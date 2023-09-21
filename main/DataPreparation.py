@@ -14,22 +14,39 @@ def readJsonFile(path, column=['id', 'submitter', 'authors', 'title', 'comments'
 
 
 # 根据第三个级别的分类简写找出它所在的大类
-def find_level1(level3, leveltabel):
-    leveq = level3
-    level3 = level3.split(' ')[0]
-    if len(leveltabel[leveltabel['categories'] == level3].values) == 0:
-        level1 = leveltabel[leveltabel['archive_id'] == level3]['group_name']
-    else:
-        level1 = leveltabel[leveltabel['categories'] == level3]['group_name']
-    if len(level1) == 0:
-        print(leveq)
+def groupOFcatANDarc(level_tabel, categroy):
+    groupOFcate = level_tabel[level_tabel['categories'] == categroy].values
+    if len(groupOFcate) == 0:
+        # 有一些是 level2
+        groupOFcate = level_tabel[level_tabel['archive_id'] == categroy].values
+    if len(groupOFcate) == 0:
         return 'Not Exit'
+    print(groupOFcate[0][0])
+    return groupOFcate[0][0]
+
+
+def find_level1(level3, leveltabel):
+    print('--' * 50)
+    cats_list = level3.split()
+    print(cats_list)
+    if len(cats_list) == 1:  # 测试过了, 不存在空值
+        group = groupOFcatANDarc(leveltabel, cats_list[0])
+        return group
+    # 一篇论文存在多个 level3
     else:
-        return level1.values[0]
+        group_list = []
+        for k in cats_list:
+            group_list.append(groupOFcatANDarc(leveltabel, k))
+        group_list = list(set(group_list))
+        # 排序防止同一类别导致不一样
+        group_list.sort()
+        group = '&&'.join(group_list)
+        print(group)
+        return group
 
 
 if __name__ == '__main__':
     data = readJsonFile('../../arxiv-metadata-oai-2019.json', )
     leve_tabel = pd.read_csv('../source/categorys.csv')
     data['group'] = data['categories'].apply(find_level1, args=(leve_tabel,))
-    # data.to_pickle('../../arxiv-metadata-oai-2019.pkl')
+    data.to_pickle('../../arxiv-metadata-oai-2019.pkl')
