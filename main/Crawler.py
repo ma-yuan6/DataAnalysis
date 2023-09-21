@@ -6,10 +6,10 @@ import pandas as pd
 # web_data = requests.get('https://arxiv.org/category_taxonomy').text
 
 # 存储请求的网页文件
-# with open('./category.html', mode='w', encoding='utf-8') as f:
+# with open('../output/category.html', mode='w', encoding='utf-8') as f:
 #     f.write(web_data)
 
-with open('./category.html') as f:
+with open('../output/category.html') as f:
     web_data = f.read()
 
 soup = BeautifulSoup(web_data, features='xml')
@@ -38,7 +38,6 @@ for t in tags:
         level_2_name = t.text
     elif t.name == "h3":
         raw = t.text
-        print(raw)
         level_2_code = re.sub(r"(.*)\((.*)\)", r"\2", raw).strip()  # 正则表达式：模式字符串：(.*)\((.*)\)；被替换字符串"\2"；被处理字符串：raw
         level_2_name = re.sub(r"(.*)\((.*)\)", r"\1", raw).strip()
     elif t.name == "h4":
@@ -66,4 +65,4 @@ df_taxonomy = pd.DataFrame({
 })
 
 # 按照 "group_name" 进行分组，在组内使用 "archive_name" 进行排序
-df_taxonomy.sort_values(["group_name", "archive_name"]).iloc[:-1, :].to_csv('./categorys.csv', index=False)
+df_taxonomy.sort_values(["group_name", "archive_name"]).iloc[:-1, :].to_csv('../source/categorys.csv', index=False)
