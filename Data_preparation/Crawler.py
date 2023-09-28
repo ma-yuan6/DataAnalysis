@@ -1,13 +1,20 @@
+import os
 import requests
 import re
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# web_data = requests.get('https://arxiv.org/category_taxonomy').text
+if not os.path.exists('../output/category.html'):
+    if not os.path.exists('../output'):
+        os.mkdir('../output')
 
-# 存储请求的网页文件
-# with open('../output/category.html', mode='w', encoding='utf-8') as f:
-#     f.write(web_data)
+    print('正在请求网页...')
+    web_data = requests.get('https://arxiv.org/category_taxonomy').text
+
+    # 存储请求的网页文件
+    with open('../output/category.html', mode='w', encoding='utf-8') as f:
+        f.write(web_data)
+    print('网页请求成功, 正在解析网页...')
 
 with open('../output/category.html') as f:
     web_data = f.read()
@@ -66,3 +73,4 @@ df_taxonomy = pd.DataFrame({
 
 # 按照 "group_name" 进行分组，在组内使用 "archive_name" 进行排序
 df_taxonomy.sort_values(["group_name", "archive_name"]).iloc[:-1, :].to_csv('../source/categorys.csv', index=False)
+print('数据保存成功!')
