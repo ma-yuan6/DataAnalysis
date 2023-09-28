@@ -4,7 +4,9 @@ Python 数据分析及可视化交互。
 1. 使用 request + BeautifulSoup 实现网站数据爬取及解析 
 2. 使用 pandas 分析数据 
 3. 使用 streamlit 搭建网页应用实现交互
-4. 使用 altair、plotly、pyecharts 绘制图形
+4. 使用 networkx 构建关系网
+5. 使用 wordcloud 绘制词云图 
+6. 使用 altair、plotly、pyecharts 绘制图形
 
 
 # 项目结构
