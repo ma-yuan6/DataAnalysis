@@ -30,7 +30,7 @@ pip download -r requirements.txt
 ~~~
 pip download -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ~~~
-3、源数据283MB就不上传了, 你需要将 . /streamlitAPP  下的config.py 中的JSON_FILE_PATH 改为你 JSON 文件的位置。TRANSFORM_DATA_PATH 的位置改为你需要将数据输出的位置。
+3、源数据283MB就不上传了（可联系作者获取 QQ：311064561）你需要将 . /streamlitAPP  下的config.py 中的JSON_FILE_PATH 改为你 JSON 文件的位置。TRANSFORM_DATA_PATH 的位置改为你需要将数据输出的位置。
 
 4、依次运行 Data_preparation 文件夹中的 `Crawler.py`、`DataPreparation.py`、`Commits_Data.py`、`Authors_data.py`文件。
 过程中可能会出现警告，不用管它，只要最后打印执行成功就行。
