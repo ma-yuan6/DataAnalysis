@@ -1,4 +1,5 @@
 # 介绍
+
 Python 数据分析及可视化交互。
 
 1. 使用 request + BeautifulSoup 实现网站数据爬取及解析 
@@ -19,10 +20,12 @@ Python 数据分析及可视化交互。
 
 # 项目运行步骤
 1、使用当前环境或者使用 Anaconda 创建虚拟环境
+
 ~~~
 conda create --name environment_name python=3.6
 ~~~
 2、下载依赖
+
 ~~~
 pip download -r requirements.txt
 ~~~
@@ -40,3 +43,17 @@ pip download -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ~~~
  streamlit run '.\streamlitAPP\01📑01、Paper categories.py'
 ~~~
+
+# 预览
+
+![image-20241110145811655](doc/image-20241110145811655.png)
+
+![image-20241110145838629](doc/image-20241110145838629.png)
+
+![image-20241110145907777](doc/image-20241110145907777.png)
+
+![image-20241110145924308](doc/image-20241110145924308.png)
+
+![image-20241110145933562](doc/image-20241110145933562.png)
+
+![image-20241110145939601](doc/image-20241110145939601.png)
